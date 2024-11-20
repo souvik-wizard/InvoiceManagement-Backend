@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020" /* Specify your target ECMAScript version */,
+    "module": "CommonJS" /* Specify the module system you're using (CommonJS for Node.js) */,
+    "outDir": "./dist" /* Specify the output directory for compiled files */,
+    "rootDir": "./" /* Specify the root directory of your TypeScript source files */,
+    // "strict": true /* Enable strict type-checking */,
+    "esModuleInterop": true /* Enable ES module interop */,
+    "skipLibCheck": true /* Skip type checking of declaration files */,
+    "forceConsistentCasingInFileNames": true /* Enforce consistent casing in file names (Windows) */,
+    "resolveJsonModule": true /* Allow importing JSON modules */,
+    "declaration": false /* Disable generating declaration files (.d.ts) */,
+    "sourceMap": true /* Generate source maps for debugging */,
+    "experimentalDecorators": true /* Enable experimental decorators (if needed) */,
+    "emitDecoratorMetadata": true /* Emit decorator metadata (if needed) */,
+    "baseUrl": "." /* Base directory for resolving non-relative module names */,
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": ["./*.ts"] /* Specify which files to include for compilation */,
+  "exclude": [
+    "node_modules"
+  ] /* Specify files/folders to exclude from compilation */
+}
