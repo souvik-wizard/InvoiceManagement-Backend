@@ -25,15 +25,32 @@ export const handleFileUpload = async (req: Request, res: Response) => {
     const displayName = req.file.originalname;  // Get the original file name
     console.log("File name:", displayName);
 
-    const prompt = "I want to populate the invoice data in a table in the frontend of my application. Can you organize the data accordingly?";
-    const generatedContent = await uploadAndGenerateContent({ filePath, displayName, mimeType, prompt });
-
-    console.log("Generated content:", generatedContent);
+    const prompt = `
+    I am building a React application to display invoice data in different tables. The data will be sent from the backend to the frontend. Please structure the data in JSON format.This should include the following fields, and the keys should be always in PascalCase.If any of the fields in the dataset are unavailable or missing, please provide "N/A" as the value for those fields.Also take care of all edge cases and ensure that the JSON is valid. If there is unit price and tax is given, then calculate the price with out tax / price with tax depends upon different scenario. NEVER INCLUDE ANY NOTES OR ANY OTHER INFORMATION WITH THE JSON DATA.ONLY PROVIDE THE JSON DATA AND MAKE SURE THE DATA IS NOT INCOMPLETE.
     
+       - Serial Number
+       - Customer Name
+       - Product Name
+       - Quantity
+       - Tax
+       - Total Amount
+       - Date
+       - Unit Price 
+       - Price with Tax
+       - Phone Number
+       - Total Purchase Amount 
+      
+    `;
+    
+    const generatedContent = await uploadAndGenerateContent({ filePath, displayName, mimeType, prompt });
+    console.log("Generated content:", generatedContent);
+    const jsonContent = generatedContent.replace(/```json/g, '').replace(/```/g, '').trim();
+    // console.log("Generated JSON content:", jsonContent);
+
     res.status(200).json({
         success: true,
         message: 'File uploaded and processed successfully.',
-        data: generatedContent,
+        data: jsonContent,
     });
 
   } catch (error) {

@@ -16,9 +16,9 @@ const fileManager = new GoogleAIFileManager(apiKey);
 async function parseExcel(filePath) {
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.readFile(filePath);
-  const sheet = workbook.worksheets[0]; // Get the first sheet
-  const rows = sheet.getRows(1, sheet.rowCount); // Get all rows in the sheet
-  const data = rows?.map(row => row.values); // Extract values from each row
+  const sheet = workbook.worksheets[0]; 
+  const rows = sheet.getRows(1, sheet.rowCount);
+  const data = rows?.map(row => row.values); 
   return data;
 }
 
@@ -63,7 +63,8 @@ async function uploadAndGenerateContent({ filePath, displayName, mimeType, promp
       ]);
     } else if (mimeType === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
       // If the file is an Excel file, process it with exceljs
-      const excelData = await parseExcel(filePath); // Parse the Excel file
+      const excelData = await parseExcel(filePath);
+      console.log("Excel Data:", excelData);
       const excelDataPrompt = `Process this Excel data: ${JSON.stringify(excelData)}`;
 
       result = await model.generateContent([
