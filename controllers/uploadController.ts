@@ -25,7 +25,7 @@ export const handleFileUpload = async (req: Request, res: Response) => {
        - Customer Name
        - Product Name
        - Quantity
-       - Tax
+       - Tax (Also check for CGST, SGST, IGST etc.)
        - Total Amount
        - Date
        - Unit Price 
